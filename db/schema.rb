@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_01_165117) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_173107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -48,6 +48,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_165117) do
     t.string "name"
     t.string "client_id"
     t.string "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "employee_id"
+    t.string "task_id"
+    t.string "etc"
+    t.string "start_time"
+    t.string "end_time"
+    t.string "remarks"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,8 +107,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_01_165117) do
     t.string "name"
     t.string "description"
     t.string "etc"
-    t.string "data"
+    t.jsonb "data"
     t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trackers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "employee_id"
+    t.date "date"
+    t.time "time"
+    t.string "battery"
+    t.string "signal_strength"
+    t.string "lat"
+    t.string "lon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
