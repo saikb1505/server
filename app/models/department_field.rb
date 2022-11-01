@@ -1,0 +1,2 @@
+class DepartmentField < ApplicationRecord
+end
