@@ -1,0 +1,2 @@
+class TestTracker < ApplicationRecord
+end
